@@ -187,3 +187,62 @@ print(list(itertools.permutations('ABCD')))
 print(list(itertools.combinations('ABCDE',3)))
 print(list(itertools.product('ABCD','123')))
 '''
+
+"""collections模块下的工具类"""
+'''
+from collections import Counter
+
+words = [
+    'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
+    'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around',
+    'the', 'eyes', "don't", 'look', 'around', 'the', 'eyes',
+    'look', 'into', 'my', 'eyes', "you're", 'under'
+]
+counter = Counter(words)
+print(counter.most_common(3))
+# [('eyes', 8), ('the', 5), ('look', 4)]
+'''
+
+"""常用算法"""
+"""
+1、穷举法-又又称暴力破解法。对所有的可能性进行验证，直到找到正确答案
+2、贪婪发-在对问题求解时，总是做出在当前看来最好的选择，不追求最优解，快速找到满意解
+3、分治法-把一个复杂的问题分成两个或更多的相同或相似的子问题，在把子问题分成更小的子问题
+		直到可以直接求解的程度，最后将子问题的解进行合并得到原问题的解
+4、回溯法-回溯法又称试探法，按选优条件向前搜索，当搜索到某一步发现原先选择并不优或达不到
+		目标时，就退一步重新选择
+5、动态规划-基本思想是将带求解问题分成若干个子问题，先求解并保存这些子问题的解，避免产生
+		大量的重复计算
+"""
+
+"""穷举法例子"""
+'''
+# 公鸡5元一只 母鸡3元一只 小鸡1元三只
+# 用100元买100只鸡 问公鸡/母鸡/小鸡各多少只
+for x in range(20):
+	for y in range(33):
+		z = 100-x-y
+		if 5*x + 3*y + z//3 == 100 and z%3 == 0:
+			print(x,y,z)
+'''
+
+# A、B、C、D、E五人在某天夜里合伙捕鱼 最后疲惫不堪各自睡觉
+# 第二天A第一个醒来 他将鱼分为5份 扔掉多余的1条 拿走自己的一份
+# B第二个醒来 也将鱼分为5份 扔掉多余的1条 拿走自己的一份
+# 然后C、D、E依次醒来也按同样的方式分鱼 问他们至少捕了多少条鱼
+
+fish = 6
+
+while True:
+	total = fish
+	enough = True
+	for _ in range(5):
+		if(total-1)%5 == 0:
+			total = (total-1)//5*4
+		else:
+			enough = False
+			break
+	if enough:
+		print(fish)
+		break
+	fish += 5
