@@ -1,0 +1,17 @@
+windows
+dir : 查看某一个文件夹下的文件名与子文件
+ipconfig ： 查看本地网卡的ip信息
+tasklist :  查看运行的进程
+
+linux
+ls : 
+ifconfig : 
+ps aux : 
+
+执行系统命令
+import os
+os.system('ls')
+
+执行系统命令， 并拿到命令结果
+import subprocess
+subprocess.Popen('ls', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPO)
